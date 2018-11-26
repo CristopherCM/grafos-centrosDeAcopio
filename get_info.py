@@ -62,7 +62,7 @@ def export_dijkstra(dist,vertices,centros_de_acopio):
 		We output 'Distance too long to compute'
 		"""
 		if dist[i] == sys.maxsize:
-			distance = "Distance too long to compute" 
+			distance = "Distance too long to compute / No path found form origin to destination" 
 		else:
 			distance = dist[i]
 		to_csv.append([centros_de_acopio[i],distance])
@@ -82,7 +82,7 @@ def print_solution(dist,vertices,centros_de_acopio):
 	"""	
 	for i in range(vertices): 
 		if dist[i] == sys.maxsize:
-			distance = "Distance too long to compute"
+			distance = "Distance too long to compute / No path found form origin to destination"
 		else:
 			distance = dist[i]
 		print (centros_de_acopio[i],"  -  ", distance)
@@ -170,7 +170,7 @@ export_to_csv(adjacency_matrix, centros_de_acopio)
 for node in adjacency_matrix:
 	node.pop(0)
 #Find shortest path from origin to all nodes using Dijkstra
-dijkstra(0, (len(adjacency_matrix)), adjacency_matrix, centros_de_acopio)
+dijkstra(100, (len(adjacency_matrix)), adjacency_matrix, centros_de_acopio)
 
 # #print all the matrix
 # for y in range(0, length):
