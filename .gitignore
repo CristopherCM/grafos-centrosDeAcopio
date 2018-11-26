@@ -27,3 +27,6 @@ Icon
 
 #txt files
 *.txt
+
+#csv files
+*.csv
