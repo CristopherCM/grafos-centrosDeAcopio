@@ -53,6 +53,26 @@ def export_to_csv(matrix, names):
 
 	print("****** Solution exported to csv ******")
 
+def export_hash_table():
+    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+    client = gspread.authorize(creds)
+    sheet = client.open('centros_acopio').sheet1 # this document is already shared
+    centros_de_acopio = sheet.get_all_records()
+
+    to_csv  = []
+    index = 0
+    for r in centros_de_acopio:
+        if type(r['id']) is int: # is not empty
+            if type(r['lat']) is float: # is not empty
+                to_csv.append([index, r['Nombre del centro de acopio'], r['Dirección (agregada)'], r['Necesidades'], r['Tipo']])
+                index += 1
+
+        with open('hash_table.csv', 'w', newline='') as f:
+                writer = csv.writer(f)
+                writer.writerows(to_csv)
+
+
 #====================== MAIN =========================
 centros_de_acopio = [] # pass by reference
 coordinates = get_data(centros_de_acopio)
@@ -87,6 +107,8 @@ for y in range(0, length):
 
 #write csv
 export_to_csv(adjacency_matrix, centros_de_acopio)
+#export hash table
+export_hash_table()
 
 # #print all the matrix
 # for y in range(0, length):
