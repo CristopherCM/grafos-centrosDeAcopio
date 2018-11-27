@@ -62,6 +62,7 @@ def export_hash_table():
 
     to_csv  = []
     index = 0
+    
     for r in centros_de_acopio:
         if type(r['id']) is int: # is not empty
             if type(r['lat']) is float: # is not empty
@@ -71,7 +72,7 @@ def export_hash_table():
         with open('hash_table.csv', 'w', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerows(to_csv)
-
+    print("****** Solution exported to csv ******")
 
 #====================== MAIN =========================
 centros_de_acopio = [] # pass by reference
