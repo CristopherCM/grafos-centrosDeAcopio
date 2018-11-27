@@ -86,13 +86,16 @@ with open('hash_table.csv', newline='') as csvfile:
 
 ht = hash_table()
 
-n = node_chido(hash_tab[1][2], hash_tab[1][3], hash_tab[1][4])
-ht.insert(hash_tab[1][1], n)
+for i in range(len(hash_tab)-1):
+	n = node_chido(hash_tab[i][2], hash_tab[i][3], hash_tab[i][4])
+	ht.insert(hash_tab[i][1], n)
+	n = None
 
-n2 = node_chido(hash_tab[2][2], hash_tab[2][3], hash_tab[2][4])
-ht.insert(hash_tab[2][1], n2)
 
+#EJEMPLOS
 ht.value("Beyork Loreto")
 ht.value("Gimnasio G3")
+ht.value("Instituto Nacional de Pediatria")
+ht.value("Centro de Cultura Digital")
 
 
